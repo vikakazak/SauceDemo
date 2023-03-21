@@ -8,6 +8,7 @@ public class ProductsTest extends BaseTest{
     public void buyProducts() {
         loginPage.open();
         loginPage.login(USER,PASSWORD);
+        productsPage.isPageOpened();
         productsPage.addToCart("Sauce Labs Backpack");
         productsPage.openCart();
         cartPage.checkout();
