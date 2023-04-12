@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import utils.AllureUtils;
+import utils.PropertyReader;
 
 import static org.testng.Assert.*;
 
@@ -13,6 +14,15 @@ public class LoginTest extends BaseTest {
     public void successfulLogin() {
         loginPage.open();
         loginPage.login(USER,PASSWORD);
+        String correctLogin = productsPage.getTitle();
+        assertEquals(correctLogin, "Products","User is not logged in ");
+    }
+    @Test
+    public void successfulLoginUsingSecrets() {
+        loginPage.open();
+        String user = System.getProperty("user", PropertyReader.getProperty("user"));
+        String password = System.getProperty("password", PropertyReader.getProperty("user"));
+        loginPage.login(user,password);
         String correctLogin = productsPage.getTitle();
         assertEquals(correctLogin, "Products","User is not logged in ");
     }
