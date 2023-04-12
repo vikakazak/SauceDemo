@@ -21,7 +21,7 @@ public class LoginTest extends BaseTest {
     public void successfulLoginUsingSecrets() {
         loginPage.open();
         String user = System.getProperty("user", PropertyReader.getProperty("user"));
-        String password = System.getProperty("password", PropertyReader.getProperty("user"));
+        String password = System.getProperty("password", PropertyReader.getProperty("password"));
         loginPage.login(user,password);
         String correctLogin = productsPage.getTitle();
         assertEquals(correctLogin, "Products","User is not logged in ");
